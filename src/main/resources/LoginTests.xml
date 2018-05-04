@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Test Screenshot">
+    <test name="Two classes Test">
+        <classes>
+            <class name="com.ddd.extendReports.LoginTest1"></class>
+            <class name="com.ddd.extendReports.LoginTest2"></class>
+        </classes>
+    </test>
+</suite>

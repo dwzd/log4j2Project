@@ -1,5 +1,7 @@
-package com.ddd.extendReports;
+package com.ddd.PageObject;
 
+import com.ddd.extendReports.ExtentPageFactory;
+import com.ddd.extendReports.Screenshots2;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -18,19 +20,23 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest_Screenshots {
+public class TestLogin {
     private WebDriver driver;
     private String baseUrl;
     ExtentReports extentReports;
     ExtentTest extentTest;
+    HomePage homePage;
 
     @BeforeClass
     public void setUp(){
         baseUrl = "https://mail.qq.com";
-        extentReports = new ExtentReports("D:\\Java\\Reports\\logintest.html");
+        extentReports = ExtentPageFactory.getInstance();
+        //extentReports = new ExtentReports("D:\\Java\\Reports\\logintest.html");
         extentTest = extentReports.startTest("Watching if the login is successfully!");
 
         driver = new ChromeDriver();
+        homePage = new HomePage(driver, extentTest);
+
         extentTest.log(LogStatus.INFO, "Started the browser---");
         driver.manage().window().maximize();
         extentTest.log(LogStatus.INFO, "Browser maximized---");
@@ -42,23 +48,30 @@ public class LoginTest_Screenshots {
         extentTest.log(LogStatus.INFO, "To input url---");
         driver.switchTo().frame("login_frame");
         Thread.sleep(10);
-        WebElement emailUser = driver.findElement(By.id("u"));
-        emailUser.sendKeys("3087942612");
-        extentTest.log(LogStatus.INFO, "To input username---");
-        WebElement emailKey = driver.findElement(By.id("p"));
-        emailKey.sendKeys("conans888");
-        extentTest.log(LogStatus.INFO, "To input password---");
-        driver.findElement(By.id("login_button")).click();
-        extentTest.log(LogStatus.INFO, "To log in the email box---");
+//        WebElement emailUser = driver.findElement(By.id("u"));
+//        emailUser.sendKeys("3087942612");
+        //homePage.enterUsernameText("3087942612");
+        //extentTest.log(LogStatus.INFO, "To enter username---");
 
+//        WebElement emailKey = driver.findElement(By.id("p"));
+//        emailKey.sendKeys("conans888");
+       // homePage.enterPassword("conans888");
+        //extentTest.log(LogStatus.INFO, "To input password---");
+
+//        driver.findElement(By.id("login_button")).click();
+//        extentTest.log(LogStatus.INFO, "To log in the email box---");
+       // homePage.clickButton();
+        homePage.login("3087942612", "conans888");
         Thread.sleep(3000);
-        WebElement welcomeText = null;
-        try{
-            welcomeText = driver.findElement(By.xpath("//span[@id='useraddr']"));
-        }catch (NoSuchElementException e){
-            System.out.println(e.getMessage());
-        }
-        Assert.assertEquals(welcomeText.getText(), "3087942612@qq.com");
+//        WebElement welcomeText = null;
+//        try{
+//            welcomeText = driver.findElement(By.xpath("//span[@id='useraddr']"));
+//        }catch (NoSuchElementException e){
+//            System.out.println(e.getMessage());
+//        }
+        boolean result = homePage.isWelcomeTextPresent();
+        Assert.assertTrue(result);
+        //Assert.assertEquals(welcomeText.getText(), "3087942612@qq.com");
         extentTest.log(LogStatus.PASS, "Checking if login is successfully!!!");
     }
     @AfterMethod

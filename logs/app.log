@@ -1,0 +1,6 @@
+16:34:47.908 DEBUG log4jDemo.LoggingFile -Debug message logged
+16:34:47.917 ERROR log4jDemo.LoggingFile -Error message logged!!!
+16:34:47.918 FATAL log4jDemo.LoggingFile -Fetal message logged
+16:38:19.585 DEBUG log4jDemo.LoggingFile -Debug message logged
+16:38:19.590 ERROR log4jDemo.LoggingFile -Error message logged!!!
+16:38:19.590 FATAL log4jDemo.LoggingFile -Fetal message logged

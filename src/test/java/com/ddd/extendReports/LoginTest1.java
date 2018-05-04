@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,7 +17,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest_Screenshots {
+public class LoginTest1 {
     private WebDriver driver;
     private String baseUrl;
     ExtentReports extentReports;
@@ -27,7 +26,8 @@ public class LoginTest_Screenshots {
     @BeforeClass
     public void setUp(){
         baseUrl = "https://mail.qq.com";
-        extentReports = new ExtentReports("D:\\Java\\Reports\\logintest.html");
+        extentReports = ExtentFactory.getInstance();
+        //extentReports = new ExtentReports("D:\\Java\\Reports\\logintest.html");
         extentTest = extentReports.startTest("Watching if the login is successfully!");
 
         driver = new ChromeDriver();
